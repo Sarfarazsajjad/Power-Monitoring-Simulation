@@ -1,0 +1,49 @@
+<script>
+// window.onload=function(){
+// 	
+// 	document.write("onload function");
+// };
+
+// document.write("hello world");
+// 
+// setInterval(function(){
+// 	document.write("interval ");
+// },500);
+
+console.log("script running");
+
+var repeatingFunction = setInterval(xhrRequest,1000);
+var counter = 0;
+function xhrRequest(){
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange = function(){
+		console.log("state change");
+		if(xhr.readyState == 4 && xhr.status == 200)
+		{
+			console.log("Request Success");
+			console.log(xhr.responseText);
+		};
+	};
+	xhr.open("POST","http://localhost:8000/",true);
+	xhr.send();
+	counter++;
+	if(counter==4)clearInterval(repeatingFunction);
+	
+	
+}
+// function reqListener () {
+//   console.log(this.responseText);
+// }
+// 
+// var oReq = new XMLHttpRequest();
+// oReq.onload = reqListener;
+// oReq.onreadystatechange = function(){
+// 	console.log("readystatechange");
+// }
+// oReq.open("get", "http://localhost:8000/", true);
+// oReq.send();	
+
+console.log("end");
+
+</script>
